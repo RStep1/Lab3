@@ -1,7 +1,7 @@
 package entities.persons;
 
-import entities.persons.ThingInteraction;
+import entities.things.Tray;
 
 public interface TrayInteraction extends ThingInteraction {
-    void dropThing();
+    void dropThing(Tray tray);
 }

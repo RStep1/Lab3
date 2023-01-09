@@ -9,7 +9,7 @@ public class Tray extends Thing {
     public Thing getThingOn() {
         return thingOn;
     }
-    public void setThingOn(Thing thing) {
+    public void setThingOn(Thing thingOn) {
         this.thingOn = thingOn;
     }
 }

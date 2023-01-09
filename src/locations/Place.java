@@ -2,13 +2,13 @@ package locations;
 
 import entities.Burning;
 import entities.Entity;
+import entities.things.Liquid;
 
-import java.sql.Array;
 import java.util.ArrayList;
 
-public class Place implements IPlace, Cloneable {
+public class Place implements IPlace, Burning {
     private String name;
-    private Place superplace = null;
+    private Liquid dousedWith;
     private ArrayList<Place> subplaces = new ArrayList<>();
     private ArrayList<Entity> entities = new ArrayList<>();
     public Place(String name) {
@@ -20,63 +20,60 @@ public class Place implements IPlace, Cloneable {
         this.entities = new ArrayList<>(entities);
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public Liquid getDousedWith() {
+        return dousedWith;
+    }
+    public void setDousedWith(Liquid liquid) {
+        this.dousedWith = liquid;
+    }
+
+    @Override
+    public void addSubplaces(Place... subplaces) {
+        for (Place subplace : subplaces) {
+            this.subplaces.add(subplace);
+        }
+    }
+
     @Override
     public void addEntities(Entity... entities) {
         for (Entity entity : entities) {
             this.entities.add(entity);
         }
     }
-    @Override
-    public void addSubplaces(Place... subplaces) {
-        for (Place place : subplaces) {
-            this.subplaces.add(place);
-        }
-        for (Place place : this.subplaces) { //обновляем для всех вложенных локаций ссылку на их "родителя"
-            place.superplace = this;
-        }
-    }
 
     @Override
-    public void moveEntity(Entity entity, Place newPlace) {
-
+    public boolean removeEntity(Entity summon) {
+        for (Entity entity : entities) {
+            if (summon.equals(entity)) {
+                entities.remove(summon);
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void removeEntity(Entity entity) {
-
-        entities.remove(entity);
-    }
     public ArrayList<Place> getSubplaces() {
-        //return new ArrayList<>(subplaces);
-        return subplaces;
+        return this.subplaces;
     }
     public ArrayList<Entity> getEntities() {
-        return new ArrayList<>(entities);
+        return this.entities;
     }
-    public Place getPlace(Entity entity) throws CloneNotSupportedException {
-        return this.clone();
+
+    @Override
+    public void inflame(String condition) {
+        if (!dousedWith.isCanBurn()) {
+            System.out.println("вспыхивает " + condition + " " + getName());
+        }
     }
-    public Place getSuperplace() throws CloneNotSupportedException {
-        //return new Place(superplace);
-        //return this.superplace;
-        return this.superplace.clone();
-    }
+
     @Override
     public String toString() {
-        return String.format("Локация %s, Подлокации: %s, Сущности: %s",
-                this.name, this.subplaces, this.entities);
+        return name;
     }
-    @Override
-    public Place clone() throws CloneNotSupportedException {
-        Place cloned = (Place) super.clone();
-        cloned.name = this.name;
-        cloned.superplace = this.superplace.clone();
-        for (Place subplace : cloned.subplaces) { // нужно клонировать все изменяемые объекты
-            subplace = subplace.clone();
-        }
-        for (Entity entity : cloned.entities) {
-            entity = entity.clone();
-        }
-        return cloned;
-    }
+
 }
 

@@ -4,9 +4,9 @@ import entities.things.*;
 
 public interface IBandit {
     void hopOff();
-    void disappear();
+    void disappear(Place from);
     void appear(Place place);
     void burst();
-    void hit(Thing thing, AbstractPerson target, String targetBodyPart);
-    void douseWith(Place location, Thing thing);
+    void hit(Hand hand, Person target, String targetBodyPart);
+    void douseWith(Place location, Tank tank);
 }

@@ -1,10 +1,9 @@
 package entities.persons.croud_of_people;
-import entities.persons.AbstractPerson;
-import entities.persons.Emotions;
-import entities.things.*;
+import entities.persons.Person;
+import locations.GlassDoor;
 
 public interface ICroud extends IPeople {
-    void scream(Emotions emotion);
-    void crash(AbstractPerson abstractPerson);
-    void strike(Thing thing);
+    void scream();
+    void crash(Person person);
+    void dislodge(GlassDoor glassDoor);
 }

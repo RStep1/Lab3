@@ -7,11 +7,13 @@ public class PoliceOfficers extends People {
         this.NUMBER = NUMBER;
     }
 
-    public int getNUMBER(int NUMBER) {
+    public int getNUMBER() {
         return NUMBER;
     }
 
     public void runningThrough(Croud croud) {
-        System.out.println(this.getName() + "бегут сковзь " + croud.getName() + "\n");
+        System.out.println(getNUMBER() + " " + getName() +
+                " бегут сковзь " + croud.getEmotion() +
+                " " + croud.getName());
     }
 }

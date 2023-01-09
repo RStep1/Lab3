@@ -1,8 +1,9 @@
 package entities.persons.croud_of_people;
 
-import entities.persons.AbstractPerson;
+import entities.persons.Person;
 import entities.persons.Emotions;
-import entities.things.Thing;
+import events.ShortSound;
+import events.Sounds;
 import locations.*;
 
 public class Croud extends People implements ICroud {
@@ -24,16 +25,19 @@ public class Croud extends People implements ICroud {
     }
 
     @Override
-    public void scream(Emotions emotion) {
-        System.out.println(getName() + " подняла " + emotion + " крик\n");
+    public void scream() {
+        ShortSound.playSound(Sounds.SCREAM);
+        System.out.println((getEmotion() == Emotions.UNDEFINED ? "" : getEmotion() + " ")
+                + getName());
     }
     @Override
-    public void crash(AbstractPerson abstractPerson) {
-        System.out.println("смянает " + abstractPerson.getName() + "\n");
+    public void crash(Person person) {
+        System.out.println("смянает " + person.getName());
     }
     @Override
-    public void strike(Thing thing) {
-
+    public void dislodge(GlassDoor glassDoor) {
+        glassDoor.setBroken(true);
+        System.out.println("\n" + getName() + " выдавили стекла в " + glassDoor);
     }
 
 

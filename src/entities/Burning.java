@@ -1,5 +1,5 @@
 package entities;
 
 public interface Burning {
-    void inflame();
+    void inflame(String condition);
 }

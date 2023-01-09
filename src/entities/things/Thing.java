@@ -9,7 +9,8 @@ public class Thing extends Entity implements Burning {
     }
 
     @Override
-    public void inflame() {
-        System.out.println(); ///
+    public void inflame(String condition) {
+        System.out.println("пламя пожирает " + getName() +
+                " " + condition);
     }
 }

@@ -4,6 +4,7 @@ public enum Emotions {
     SHOCKED("потрясенный"),
     EXCITED("взволнованный"),
     DESPERATE("отчаянный"),
+    TURNS_WHITE("Белея,"),
     UNDEFINED("неопределенная");
     private final String description;
     Emotions(String description) {

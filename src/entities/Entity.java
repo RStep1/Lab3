@@ -1,6 +1,6 @@
 package entities;
 
-public class Entity implements Cloneable{
+public abstract class Entity {
     private String name;
     public Entity(String name) {
         this.name = name;
@@ -8,11 +8,17 @@ public class Entity implements Cloneable{
     public String getName() {
         return name;
     }
-
     @Override
-    public Entity clone() throws CloneNotSupportedException {
-        Entity cloned = (Entity) super.clone();
-        cloned.name = this.name;
-        return cloned;
+    public boolean equals(Object otherObject) {
+        if (this == otherObject) return true;
+        if (otherObject == null) return false;
+        if (getClass() != otherObject.getClass())
+            return false;
+        Entity other = (Entity) otherObject;
+        return name.equals(other.name);
+    }
+    @Override
+    public String toString() {
+        return this.name;
     }
 }

@@ -7,7 +7,7 @@ public enum Sounds {
     SCREAM("крик"),
     GLASS_CHIME("звон стекла");
     private final String name;
-    private Sounds(String name) {
+    Sounds(String name) {
         this.name = name;
     }
 

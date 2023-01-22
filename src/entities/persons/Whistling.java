@@ -1,5 +1,5 @@
 package entities.persons;
 
-public interface IPorter {
+public interface Whistling {
     void finishWhistle();
 }

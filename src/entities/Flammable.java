@@ -1,5 +1,5 @@
 package entities;
 
-public interface Burning {
+public interface Flammable {
     void inflame(String condition);
 }

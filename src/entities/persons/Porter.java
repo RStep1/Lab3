@@ -2,7 +2,7 @@ package entities.persons;
 
 import events.Sounds;
 
-public class Porter extends Person implements IPorter{
+public class Porter extends Person implements Whistling {
     public Porter(String name) {
         super(name);
     }

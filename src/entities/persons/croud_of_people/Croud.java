@@ -5,8 +5,9 @@ import entities.persons.Emotions;
 import events.ShortSound;
 import events.Sounds;
 import locations.*;
+import entities.persons.Screaming;
 
-public class Croud extends People implements ICroud {
+public class Croud extends People implements Demolishing, Screaming {
     private Emotions emotion;
     public Croud(String name, Emotions emotion) {
         super(name);

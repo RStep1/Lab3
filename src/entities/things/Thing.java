@@ -1,9 +1,9 @@
 package entities.things;
 
-import entities.Burning;
+import entities.Flammable;
 import entities.Entity;
 
-public class Thing extends Entity implements Burning {
+public class Thing extends Entity implements Flammable {
     public Thing(String name) {
         super(name);
     }

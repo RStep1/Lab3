@@ -65,7 +65,7 @@ public class Main {
         Timer.delay(0);
         System.out.println("стряслось и вторе чудо.");
         foreigner.setEmotion(Emotions.SHOCKED);
-        foreigner.scream("-Убивают! Милицию! Меня бандиты убивают!\n",
+        foreigner.shout("-Убивают! Милицию! Меня бандиты убивают!\n",
                 "на чистом русском языке");
 
         Person person = new Person("Павел Иосифович");

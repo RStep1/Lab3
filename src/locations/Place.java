@@ -1,12 +1,12 @@
 package locations;
 
-import entities.Burning;
+import entities.Flammable;
 import entities.Entity;
 import entities.things.Liquid;
 
 import java.util.ArrayList;
 
-public class Place implements IPlace, Burning {
+public class Place implements Placeable, Flammable {
     private String name;
     private Liquid dousedWith;
     private ArrayList<Place> subplaces = new ArrayList<>();

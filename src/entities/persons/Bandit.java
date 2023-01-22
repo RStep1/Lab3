@@ -5,7 +5,7 @@ import events.ShortSound;
 import locations.Place;
 import entities.Entity;
 
-public class Bandit extends Entity implements IBandit, TrayInteraction {
+public class Bandit extends Entity implements Marauding, TrayInteraction {
     private Thing inLeftHand;
     private Thing inRightHand;
     public Bandit(String name) {

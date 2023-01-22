@@ -1,8 +1,9 @@
 package entities.persons.croud_of_people;
+import entities.persons.Running;
 import locations.*;
 import entities.Entity;
 
-public class People extends Entity implements IPeople {
+public class People extends Entity implements Running {
     public People(String name) {
         super(name);
     }

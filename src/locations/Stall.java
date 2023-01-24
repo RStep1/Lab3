@@ -20,7 +20,15 @@ public class Stall extends Place {
     public ArrayList<Thing> getThingsOn() {
         return thingsOn;
     }
-
+    public boolean removeThingOn(Thing item) {
+        for (Thing thing : thingsOn) {
+            if (thing.equals(item)) {
+                thingsOn.remove(item);
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public void inflame(String condition) {
         System.out.print(getName() + " вспыхнул " + condition);

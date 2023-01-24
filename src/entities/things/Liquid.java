@@ -7,7 +7,7 @@ public class Liquid extends Thing {
         this.canBurn = canBurn;
     }
 
-    public boolean isCanBurn() {
+    public boolean canItBurn() {
         return canBurn;
     }
 }

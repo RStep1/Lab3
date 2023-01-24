@@ -7,6 +7,7 @@ public interface Marauding {
     void disappear(Place from);
     void appear(Place place);
     void burst();
-    void hit(Hand hand, Person target, String targetBodyPart);
+    void take(Thing thing, Place from);
+    void pointTo(Person him);
     void douseWith(Place location, Tank tank);
 }

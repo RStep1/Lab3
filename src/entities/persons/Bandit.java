@@ -1,29 +1,56 @@
 package entities.persons;
 import entities.things.*;
-import events.Sounds;
-import events.ShortSound;
 import locations.Place;
 import entities.Entity;
+import locations.Stall;
 
-public class Bandit extends Entity implements Marauding, TrayInteraction {
-    private Thing inLeftHand;
-    private Thing inRightHand;
+import java.util.ArrayList;
+
+public class Bandit extends Entity implements Marauding, Shouting {
+    private ArrayList<Thing> items = new ArrayList<>();
+
     public Bandit(String name) {
         super(name);
     }
-    public Thing getInLeftHand() {
-        return this.inLeftHand;
+
+    public ArrayList<Thing> getItems() {
+        return items;
     }
-    public Thing getInRightHand() {
-        return this.inRightHand;
+    public void addItems(Thing... things) {
+        for (Thing thing : things) {
+            this.items.add(thing);
+        }
     }
-    public void setInLeftHand(Thing thing) {
-        this.inLeftHand = thing;
-    }
-    public void setInRightHand(Thing thing) {
-        this.inRightHand = thing;
+    public boolean removeItem(Thing thing) {
+        for (Thing item : items) {
+            if (item.equals(thing)) {
+                items.remove(thing);
+                return true;
+            }
+        }
+        return false;
     }
 
+    public void say(String phrase) {
+        System.out.print(phrase);
+    }
+    @Override
+    public void pointTo(Person him) {
+        System.out.println(this + " указал на " + him);
+    }
+    @Override
+    public void take(Thing thing, Place from) {
+        if (from instanceof Stall) {
+            Stall stall = (Stall) from;
+            stall.removeThingOn(thing);
+        }
+        items.add(thing);
+        System.out.println(this + " взял " + thing);
+    }
+    @Override
+    public void shout(String phrase, String condition) {
+        System.out.println(this + " воскликнул " + condition + ": " + phrase);
+    }
     @Override
     public void hopOff() {
         System.out.println(getName() + " взлетает вверх");
@@ -42,27 +69,7 @@ public class Bandit extends Entity implements Marauding, TrayInteraction {
     public void burst() {
         System.out.println(getName() + " лопнул как воздушный шар");
     }
-    @Override
-    public void hit(Hand hand, Person target, String targetBodyPart) {
-        System.out.print(this);
-        Thing thing = null;
-        switch (hand) {
-            case LEFT_HAND -> {
-                System.out.print(" левой рукой");
-                thing = inLeftHand;
-            }
-            case RIGHT_HAND -> {
-                System.out.print(" правой рукой");
-                thing = inRightHand;
-            }
-        }
-        System.out.println(" с размаху ударил " + thing + "ом " +
-                target + " " + targetBodyPart);
 
-        if (thing instanceof Tray) {
-            ShortSound.playSound(Sounds.SHEET_METAL);
-        }
-    }
     @Override
     public void douseWith(Place location, Tank tank) {
         if (tank.getWhatIsInside() instanceof Liquid) {
@@ -72,25 +79,5 @@ public class Bandit extends Entity implements Marauding, TrayInteraction {
             System.out.println(getName() + " окатил из " +
                     tank +  " " + location + " " + liquid + "ом");
         }
-    }
-    @Override
-    public void snatch(Thing thing, Hand hand, Person owner) {
-        if (owner instanceof Foreigner) {
-            Foreigner foreigner = (Foreigner) owner;
-            foreigner.removeItem(thing);
-            switch (hand) {
-                case LEFT_HAND -> {this.inLeftHand = thing;
-                    System.out.print("Левой рукой ");}
-                case RIGHT_HAND -> this.inRightHand = thing;
-            }
-            System.out.println(getName() + " выхватил у "
-                    + foreigner + " " + thing);
-        }
-    }
-    @Override
-    public void dropThing(Tray tray) {
-        System.out.println(getName() + " сбросил " + tray.getThingOn() +
-                 " c " + tray + "a");
-        tray.setThingOn(null);
     }
 }

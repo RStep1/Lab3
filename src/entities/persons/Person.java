@@ -22,7 +22,6 @@ public class Person extends Entity implements Movable, Shouting {
         this.emotion = emotion;
         System.out.print(emotion + " ");
     }
-
     @Override
     public void shout(String phrase, String condition){
         System.out.println(getName() +  " вскричал " +

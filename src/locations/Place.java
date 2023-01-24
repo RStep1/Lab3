@@ -3,6 +3,7 @@ package locations;
 import entities.Flammable;
 import entities.Entity;
 import entities.things.Liquid;
+import exceptions.EntityNotFoundException;
 
 import java.util.ArrayList;
 
@@ -53,7 +54,7 @@ public class Place implements Placeable, Flammable {
                 return true;
             }
         }
-        return false;
+        throw new EntityNotFoundException("Сущность " + summon + " не найдена в " + this);
     }
 
     public ArrayList<Place> getSubplaces() {
@@ -65,7 +66,7 @@ public class Place implements Placeable, Flammable {
 
     @Override
     public void inflame(String condition) {
-        if (!dousedWith.isCanBurn()) {
+        if (!dousedWith.canItBurn()) {
             System.out.println("вспыхивает " + condition + " " + getName());
         }
     }
